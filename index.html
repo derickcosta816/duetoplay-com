@@ -1,61 +1,380 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-<head> <link rel="stylesheet" href="style.css">
-  <meta charset="UTF-8">
-  <title><!-- {{product}} --> | <!-- {{tagline}} --></title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <title>DuetoPlay • Prazer a dois com elegância</title>
+
+  <!-- SEO básico -->
   <meta name="description"
-        content="<!-- {{short_description}} -->">
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@^3/dist/tailwind.min.css" rel="stylesheet">
-  <!-- OpenGraph tags p/ social share -->
-  <meta property="og:type" content="product">
-  <meta property="og:title" content="<!-- {{product}} -->">
-  <meta property="og:description" content="<!-- {{short_description}} -->">
-  <meta property="og:image" content="assets/hero.jpg">
+        content="Descubra brinquedos eróticos suaves e sensuais para casais. Envio discreto, ofertas exclusivas e conteúdo educativo para elevar o prazer a dois.">
+  <meta name="keywords"
+        content="sexshop para casais, brinquedos eróticos duplos, prazer a dois, vibrador para casal, brinquedos sensuais, DuetoPlay, sexshop online">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type"        content="website">
+  <meta property="og:site_name"   content="DuetoPlay">
+  <meta property="og:url"         content="https://duetoplay.com/">
+  <meta property="og:title"       content="DuetoPlay – Momentos de prazer para duas pessoas">
+  <meta property="og:description" content="Loja online de produtos sexuais suaves e sensuais para casais.">
+  <meta property="og:image"       content="https://duetoplay.com/assets/og-cover.jpg">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <!-- STYLE – tudo em um lugar para facilitar cópia/colagem -->
+  <style>
+    :root{
+      --rose:#E91E63;
+      --rose-dark:#C2185B;
+      --slate:#111827;
+      --slate-light:#374151;
+      --bg:#FDFDFD;
+    }
+
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:"Poppins",sans-serif;
+      background:var(--bg);
+      color:var(--slate);
+      line-height:1.6;
+    }
+
+    /* NAVBAR */
+    header{
+      background:var(--bg);
+      position:sticky;top:0;z-index:999;
+      border-bottom:1px solid #eee;
+    }
+    .container{width:90%;max-width:1280px;margin:auto}
+    .nav-flex{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:1rem 0;
+    }
+    nav ul{
+      list-style:none;
+      display:flex;gap:2rem;
+      font-weight:600;
+    }
+    nav a{color:var(--slate);text-decoration:none;position:relative}
+    nav a::after{
+      content:"";position:absolute;left:0;bottom:-4px;
+      width:0;height:2px;background:var(--rose);transition:width .3s;
+    }
+    nav a:hover::after{width:100%}
+    .logo{
+      font-family:"Playfair Display",serif;font-weight:700;
+      font-size:1.75rem;color:var(--rose-dark);
+      letter-spacing:.5px;
+    }
+
+    /* HERO */
+    .hero{
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+      gap:2rem;align-items:center;
+      padding:4rem 0;
+    }
+    .hero h1{
+      font-family:"Playfair Display",serif;
+      font-size:clamp(2rem,4vw,3rem);
+      color:var(--rose-dark);
+      margin-bottom:1rem;
+      line-height:1.2;
+    }
+    .btn-primary{
+      display:inline-block;
+      background:var(--rose);
+      color:#fff;
+      padding:.85rem 2rem;
+      border-radius:9999px;
+      text-decoration:none;
+      font-weight:600;
+      transition:background .3s;
+    }
+    .btn-primary:hover{background:var(--rose-dark)}
+    .hero img{width:100%;border-radius:1rem;box-shadow:0 8px 24px rgba(0,0,0,.08)}
+
+    /* BENEFÍCIOS */
+    section{padding:4rem 0}
+    .benefits-grid{
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:2rem;text-align:center
+    }
+    .benefits-grid .icon{
+      font-size:2.5rem;margin-bottom:.75rem;color:var(--rose);
+    }
+    h2{
+      font-family:"Playfair Display",serif;
+      font-size:2rem;margin-bottom:2rem;text-align:center;color:var(--slate-light)
+    }
+
+    /* CAROUSEL */
+    .carousel{
+      position:relative;overflow:hidden;border-radius:1rem;
+      box-shadow:0 8px 24px rgba(0,0,0,.08);max-width:100%;margin:auto
+    }
+    .slides{
+      display:flex;transition:transform .6s ease-in-out;
+    }
+    .slide{
+      min-width:100%;flex:0 0 100%;position:relative
+    }
+    .slide img{width:100%;height:420px;object-fit:cover;display:block}
+    .slide-caption{
+      position:absolute;bottom:1rem;left:1rem;
+      background:rgba(0,0,0,.55);color:#fff;padding:.75rem 1rem;border-radius:.5rem;
+      font-size:1rem
+    }
+    .carousel-btn{
+      position:absolute;top:50%;transform:translateY(-50%);
+      background:rgba(255,255,255,.65);border:none;
+      font-size:2rem;line-height:1;border-radius:50%;
+      width:44px;height:44px;cursor:pointer
+    }
+    .prev{left:.5rem}.next{right:.5rem}
+    .carousel-btn:hover{background:#fff}
+
+    /* PRODUTOS */
+    .card-grid{
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:2rem
+    }
+    .card{
+      border:1px solid #eee;border-radius:1rem;overflow:hidden;
+      transition:transform .25s,box-shadow .25s;
+      background:#fff
+    }
+    .card:hover{
+      transform:translateY(-4px);
+      box-shadow:0 8px 24px rgba(0,0,0,.10)
+    }
+    .card img{width:100%;height:260px;object-fit:cover}
+    .card-content{padding:1.25rem}
+    .card-content h3{font-size:1.1rem;margin-bottom:.5rem;font-weight:600}
+    .price{color:var(--rose-dark);font-weight:700;margin-bottom:.75rem}
+    .btn-sm{
+      background:var(--slate-light);color:#fff;padding:.55rem 1.25rem;
+      border-radius:9999px;text-decoration:none;font-size:.875rem;
+      display:inline-block;
+    }
+    .btn-sm:hover{background:var(--rose)}
+
+    /* FOOTER */
+    footer{
+      background:var(--slate);color:#eee;
+      padding:3rem 0;font-size:.875rem
+    }
+    footer a{color:#fff;text-decoration:none}
+    .footer-flex{
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:2rem
+    }
+    .footer-flex h4{font-family:"Playfair Display",serif;margin-bottom:1rem;color:#fff}
+    .copyright{text-align:center;margin-top:2rem;color:#bbb}
+    /* Responsivo simples extra */
+    @media(max-width:640px){nav ul{gap:1rem;font-size:.875rem}}
+  </style>
 </head>
-<body class="bg-zinc-50 text-zinc-800">
-  <!-- HERO -->
-  <section class="text-center py-16 px-4">
-    <img src="assets/hero.jpg" alt="<!-- {{product}} -->"
-         class="mx-auto w-3/4 md:w-1/3 mb-8">
-    <h1 class="text-3xl md:text-5xl font-bold mb-4"><!-- {{headline}} --></h1>
-    <p class="text-lg md:text-xl mb-6"><!-- {{subheadline}} --></p>
-    <a href="#comprar" class="inline-block bg-pink-500 hover:bg-pink-600 text-white
-       font-semibold py-3 px-8 rounded-xl shadow-lg transition">Quero experimentar</a>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header>
+    <div class="container nav-flex">
+      <a href="#top" class="logo">DuetoPlay</a>
+
+      <nav>
+        <ul>
+          <li><a href="#beneficios">Benefícios</a></li>
+          <li><a href="#carousel">Coleção Destaque</a></li>
+          <li><a href="#produtos">Produtos</a></li>
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="container hero" id="top">
+    <div>
+      <h1>Conecte-se. Descubra. Desfrute <br> <span style="color:var(--rose)">prazer a dois</span>.</h1>
+      <p>Seleção premium de brinquedos sensuais, pensados para casais que buscam novas experiências com suavidade e elegância. Compre com envio super discreto, pagamento seguro e suporte especializado.</p>
+      <a href="#produtos" class="btn-primary" aria-label="Ver coleção de produtos">Ver Coleção</a>
+    </div>
+    <img src="assets/couple-toy-hero.jpg" alt="Casal sorrindo segurando brinquedo erótico" loading="lazy">
   </section>
 
-  <!-- BENEFITS -->
-  <section class="max-w-3xl mx-auto grid gap-6 md:grid-cols-3 px-4">
-    <!-- repetir bloco -->
-    <div class="bg-white p-6 rounded-2xl shadow">
-      <svg class="w-8 h-8 mb-4 mx-auto" fill="none" stroke="currentColor"><!-- ícone --></svg>
-      <h3 class="font-semibold mb-2">Silicone Premium</h3>
-      <p class="text-sm">Grau médico, hipoalergênico e aveludado.</p>
+  <!-- ===== BENEFÍCIOS ===== -->
+  <section id="beneficios">
+    <div class="container">
+      <h2>Por que escolher a DuetoPlay?</h2>
+      <div class="benefits-grid">
+        <div>
+          <div class="icon">💝</div>
+          <h3>Experiências mais íntimas</h3>
+          <p>Produtos pensados para estimular a conexão emocional e física – ampliando o prazer mútuo.</p>
+        </div>
+        <div>
+          <div class="icon">🚚</div>
+          <h3>Envio 100 % Discreto</h3>
+          <p>Caixas sem identificação e rastreamento em tempo real para sua tranquilidade.</p>
+        </div>
+        <div>
+          <div class="icon">🌱</div>
+          <h3>Materiais seguros</h3>
+          <p>Escolhemos silicone grau médico e ABS atóxico, livres de ftalatos.</p>
+        </div>
+        <div>
+          <div class="icon">🎁</div>
+          <h3>Kits exclusivos</h3>
+          <p>Combinações prontas para iniciantes e experts explorarem novas sensações.</p>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- PROVA SOCIAL -->
-  <section class="bg-white mt-12 py-12">
-    <h2 class="text-center text-2xl font-bold mb-8">O que dizem nossas clientes</h2>
-    <div class="max-w-2xl mx-auto space-y-6 px-4">
-      <!-- Depoimento -->
-      <blockquote class="bg-zinc-100 p-6 rounded-xl">
-        <p class="italic mb-2">“Explosão de prazer em segundos!”</p>
-        <cite class="text-xs text-zinc-500">Ana, 29&nbsp;anos</cite>
-      </blockquote>
+  <!-- ===== CAROUSEL ===== -->
+  <section id="carousel">
+    <div class="container">
+      <h2>Coleção Destaque</h2>
+      <div class="carousel" role="region" aria-label="Carrossel de produtos em destaque">
+        <div class="slides">
+          <!-- Slide 1 -->
+          <div class="slide">
+            <img src="assets/couple-vibe.jpg" alt="Vibrador para casal DuoWave">
+            <span class="slide-caption">DuoWave • Vibrador flexível com controle remoto</span>
+          </div>
+          <!-- Slide 2 -->
+          <div class="slide">
+            <img src="assets/love-beads.jpg" alt="Beads anais LoveBeats">
+            <span class="slide-caption">LoveBeats • Beads anais de silicone macio</span>
+          </div>
+          <!-- Slide 3 -->
+          <div class="slide">
+            <img src="assets/suction-ring.jpg" alt="Anel peniano com sucção SoftPulse">
+            <span class="slide-caption">SoftPulse • Anel peniano com sucção clitoriana</span>
+          </div>
+        </div>
+        <button class="carousel-btn prev" aria-label="Slide anterior">&#10094;</button>
+        <button class="carousel-btn next" aria-label="Próximo slide">&#10095;</button>
+      </div>
     </div>
   </section>
 
-  <!-- OFERTA -->
-  <section id="comprar" class="text-center py-16 px-4">
-    <h2 class="text-3xl font-bold mb-4">Garanta o seu agora</h2>
-    <p class="text-xl mb-2">De <s>R$ 299</s> por <span class="font-bold text-pink-600">R$ 219</span></p>
-    <p class="text-sm mb-6">Envio ultra-discreto + garantia 1 ano.</p>
-    <a href="https://pay.hotmart.com/..." target="_blank"
-       class="inline-block bg-emerald-500 hover:bg-emerald-600 text-white
-       font-semibold py-4 px-12 rounded-xl shadow-lg transition">Comprar com segurança</a>
+  <!-- ===== PRODUTOS ===== -->
+  <section id="produtos">
+    <div class="container">
+      <h2>Nossos Favoritos</h2>
+      <div class="card-grid">
+        <article class="card">
+          <img src="assets/duowave-thumb.jpg" alt="Vibrador flexível DuoWave">
+          <div class="card-content">
+            <h3>DuoWave</h3>
+            <p class="price">R$ 329,90</p>
+            <a href="#" class="btn-sm" aria-label="Comprar DuoWave agora">Comprar</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="assets/softpulse-thumb.jpg" alt="Anel peniano SoftPulse">
+          <div class="card-content">
+            <h3>SoftPulse</h3>
+            <p class="price">R$ 189,90</p>
+            <a href="#" class="btn-sm" aria-label="Comprar SoftPulse agora">Comprar</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="assets/lovebeats-thumb.jpg" alt="Beads anais LoveBeats">
+          <div class="card-content">
+            <h3>LoveBeats</h3>
+            <p class="price">R$ 149,90</p>
+            <a href="#" class="btn-sm" aria-label="Comprar LoveBeats agora">Comprar</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="assets/warm-kiss-thumb.jpg" alt="Lubrificante beijável WarmKiss">
+          <div class="card-content">
+            <h3>WarmKiss</h3>
+            <p class="price">R$ 59,90</p>
+            <a href="#" class="btn-sm" aria-label="Comprar WarmKiss agora">Comprar</a>
+          </div>
+        </article>
+      </div>
+    </div>
   </section>
 
-  <!-- FAQ & FOOTER omitidos p/ brevidade -->
+  <!-- ===== SOBRE ===== -->
+  <section id="sobre">
+    <div class="container">
+      <h2>Sobre a DuetoPlay</h2>
+      <p>Somos uma boutique online brasileira dedicada a aprimorar a experiência do amor a dois. Mais que vender produtos, oferecemos guias educativos, dicas de bem-estar sexual e suporte acolhedor com especialistas. Nosso compromisso é inspirar conexões saudáveis, prazerosas e inclusivas.</p>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer id="contato">
+    <div class="container footer-flex">
+      <div>
+        <h4>Navegação</h4>
+        <ul>
+          <li><a href="#beneficios">Benefícios</a></li>
+          <li><a href="#carousel">Coleção Destaque</a></li>
+          <li><a href="#produtos">Produtos</a></li>
+          <li><a href="#sobre">Sobre nós</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contato</h4>
+        <p>Email: <a href="mailto:contato@duetoplay.com">contato@duetoplay.com</a><br>
+           WhatsApp: <a href="https://wa.me/5500000000000">+55 00 00000-0000</a></p>
+      </div>
+      <div>
+        <h4>Conecte-se</h4>
+        <p>
+          <a href="#">Instagram</a> •
+          <a href="#">TikTok</a> •
+          <a href="#">YouTube</a>
+        </p>
+      </div>
+    </div>
+    <p class="copyright">© 2025 DuetoPlay • Todos os direitos reservados.</p>
+  </footer>
+
+  <!-- ===== JS – carrossel automático ===== -->
+  <script>
+    const slides = document.querySelector('.slides');
+    const slideElems = document.querySelectorAll('.slide');
+    const prevBtn = document.querySelector('.prev');
+    const nextBtn = document.querySelector('.next');
+
+    let idx = 0;
+    const moveTo = i => {
+      idx = (i + slideElems.length) % slideElems.length;
+      slides.style.transform = `translateX(-${idx * 100}%)`;
+    };
+    nextBtn.onclick = ()=>moveTo(idx+1);
+    prevBtn.onclick = ()=>moveTo(idx-1);
+    setInterval(()=>moveTo(idx+1), 6000); // autoplay a cada 6 s
+  </script>
+
+  <!-- JSON-LD para rich results -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Store",
+    "name": "DuetoPlay",
+    "url": "https://duetoplay.com",
+    "logo": "https://duetoplay.com/assets/logo.png",
+    "telephone": "+55 00 00000-0000",
+    "openingHours": "Mo-Su 00:00-23:59",
+    "areaServed": "BR"
+  }
+  </script>
 </body>
 </html>
